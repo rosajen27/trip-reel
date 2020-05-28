@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- As of 5/28/2020 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripReel</title>
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // Event listener for all button elements
+        $("button").on("click", function () {
+            // In this case, the "this" keyword refers to the button that was clicked
+            var movie;
+
+            // Constructing a URL to search Giphy for the name of the person who said the quote
+            var queryURL = "https://?q=" +
+            movie + "&api_key=";
+
+            // Performing our AJAX GET request
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                // After the data comes back from the API
+                .then(function (response) {
+                    // Storing an array of results in the results variable
+                    var results = response.data;
+
+                });
+        });
+    </script>
+
+
+    <!-- jQuery must be imported before Foundation -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- Compressed JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+</body>
+
+</html>
