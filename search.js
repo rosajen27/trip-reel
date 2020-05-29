@@ -7,11 +7,12 @@ var movie = $("#search-input").val();
 
 // hit the queryURL with $ajax
 //take response data and display it in the console log
-var queryURL ="http://www.omdbapi.com/?t=" + movie + "&apikey=3814d304";
+// response will return an array with all movies matching searched title
+var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
 
 $.ajax({
     url: queryURL,
-    method: "GET"
+    method: "GET",
   }).then(function(response) {
     console.log(response);
   });
@@ -19,3 +20,15 @@ $.ajax({
   // -----------------------------------------------------------------------
 
 });
+
+
+// API Codes:
+// Search (array of matching movies)
+// Title
+// Year
+// Rated
+// Release Date
+// Genre
+// Plot
+// Poster
+// Rarings --> Source & Value
