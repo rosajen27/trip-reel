@@ -58,8 +58,7 @@
 
         function getIMDB(movie) {
             var queryURL = OMDB + movie + OMDBkey;
-            var tempID;
-            $.ajax({
+            return $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
@@ -111,6 +110,7 @@
             var queryURL = OMDB + movie + OMDBkey;
 
             getIMDB(movie);
+            getIMDB(movie).done(function(response){console.log(response)});
 
 
             // Creates AJAX call for the specific movie button being clicked
