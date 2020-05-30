@@ -26,3 +26,22 @@ function getIMDB(movie) {
 }
 //Get the JSON object
 getIMDB(movie).done(function(response){movieObj = response;});
+
+function formatMovie(obj) {
+    return form = {
+        title: obj.title.title,
+        runtime: obj.title.runningTimeInMinutes,
+        release: obj.title.year,
+        genres: obj.genres,
+        plotOutline: obj.plotOutline.text,
+        plotSummary: obj.plotSummary.text,
+        rating: obj.certificates.US[0].certificate,
+        ratingR: obj.certificates.US[0].ratingReason,
+        reviewRate: obj.ratings.rating,
+        poster: obj.title.image.url,
+
+
+    }
+    
+}
+formatMovie(movieObj);
