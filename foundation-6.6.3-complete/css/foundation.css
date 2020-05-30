@@ -12,16 +12,28 @@
     margin: 0 auto; } }
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+
+.headerPic {
+  margin: 0px;
+  height: 300px;
+  width: 100%;
+  margin-bottom: 25px;
+  object-fit: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top right;
+}
+
+.text {
+  margin-left: 35px;
+}
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%; }
 
 body {
-  margin: 0; }
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0; }
+  margin: 0px; }
 
 hr {
   -webkit-box-sizing: content-box;
@@ -30,11 +42,30 @@ hr {
   overflow: visible; }
 
 pre {
-  font-family: monospace, monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 1em; }
 
+
+.backNav {
+  position: fixed;
+  top: 35px;
+  left: 35px;
+  color: white;
+  text-decoration: underline;  }
+
+.backArrow {
+  padding-right: 5px;  }
+
+.logo { 
+  position: fixed;
+  top: 28px;
+  right: 35px;
+  color: white;
+
+  }
+  
 a {
-  background-color: transparent; }
+  background-color: transparent;  }
 
 abbr[title] {
   border-bottom: none;
@@ -76,7 +107,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit;
+  font-family: 'Roboto', sans-serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0; }
@@ -174,13 +205,13 @@ html {
           box-sizing: inherit; }
 
 body {
-  margin: 0;
+  margin: 20;
   padding: 0;
-  background: #fefefe;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  background: linear-gradient(to left, #4E4E4E , #262626);
+  font-family: 'Roboto', sans-serif;
   font-weight: normal;
   line-height: 1.5;
-  color: #0a0a0a;
+  color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -2168,6 +2199,8 @@ td {
   padding: 0; }
 
 p {
+  font-weight: lighter;
+  width: 90%;
   margin-bottom: 1rem;
   font-size: inherit;
   line-height: 1.6;
@@ -2208,12 +2241,14 @@ h6, .h6 {
     color: #cacaca; }
 
 h1, .h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
 h2, .h2 {
+  font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.4;
   margin-top: 0;
@@ -2226,6 +2261,7 @@ h3, .h3 {
   margin-bottom: 0.5rem; }
 
 h4, .h4 {
+  font-weight: bold;
   font-size: 1.125rem;
   line-height: 1.4;
   margin-top: 0;
