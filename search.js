@@ -18,21 +18,12 @@ $.ajax({
     console.log(response);
     
       // storing the data from the AJAX request in the results variable
-      var results = response.Search;
+      let results = response.Search;
 
       // Looping through each result item
-      for (var i = 0; i < results.length; i++) {
+      results.forEach(function(movie){
+        $("#movie-list").append("<h1>" + movie.Title + "</h1> <br>" + "<img src='" + movie.Poster + "'> <br>" + movie.Year + "<br> Rated: " + movie.Rated + "<br> Genre: " + movie.Genre + "<br> Plot: " + movie.Plot + "<br> <hr>");
+      });
 
-        // Creating a paragraph tag with the result item's rating
-        var movieTitle = $("<h1>").text(response.Search[i].Title);
-        var movieYear = $("<p>").text("Year: " + response.Search[i].Year);
-        var movieRating = $("<p>").text("Rating: " + response.Search[i].Rated);
-        var movieGenre = $("<p>").text("Genre: " + response.Search[i].Genre);
-        var moviePlot = $("<p>").text("Plot: " + response.Search[i].Plot);
-        var moviePoster = $("<img>").attr("src", response.Search[i].Poster);
-
-        $("#movie-view").empty();
-        $("#movie-view").append(movieTitle, movieYear, movieRating, movieGenre, moviePlot, moviePoster);
-      }
 });
 });
