@@ -15,9 +15,17 @@ $.ajax({
     method: "GET",
   }).then(function(response) {
     console.log(response);
+    var myJSON = JSON.stringify(response);
+    document.getElementById("movie-view").innerHTML = myJSON;
   });
 
   // -----------------------------------------------------------------------
+
+  // To do:
+  // Display movie information with API codes
+  // loop through to display all matching results
+
+
 
 });
 
