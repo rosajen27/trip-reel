@@ -19,11 +19,17 @@ $.ajax({
     
       // storing the data from the AJAX request in the results variable
       let results = response.Search;
+      let movieID = response.imdbID;
 
       // Looping through each result item
+      // Appending search results
       results.forEach(function(movie){
+
         $("#movie-list").append("<h1>" + movie.Title + "</h1> <br>" + "<img src='" + movie.Poster + "'> <br>" + movie.Year + "<br> Rated: " + movie.Rated + "<br> Genre: " + movie.Genre + "<br> Plot: " + movie.Plot + "<br> <hr>");
+      
       });
 
+      // to do:
+      // take imdbID in order to display Rated, Genre, Plot, & Ratings Array (Source + Value)
 });
 });
