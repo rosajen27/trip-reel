@@ -44,25 +44,42 @@
 
 
         //Need to grab movie ID through OMDb and send that to IMDb for more detail.
-        var movieID;
-
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + movieID,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
-            }
-        }
-
-        $.ajax(settings).then(function (response) {
-            console.log(response);
-        });
 
         var OMDB = "https://www.omdbapi.com/?t=";
         var OMDBkey = "&apikey=f9d78f5a";
+
+        function movieID(movie) {
+
+
+
+        }
+
+
+
+        function getIMDB(movie) {
+            var queryURL = OMDB + movie + OMDBkey;
+            var tempID;
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + response.imdbID,
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                        "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
+                    }
+                }
+                $.ajax(settings).then(function (response) {
+                    console.log(response);
+                });
+            });
+
+        }
+
 
         //list of liked movies
         var moviePref = [];
@@ -72,8 +89,6 @@
             moviePref = localStorage.getItem('Pref');
         }
 
-        //Object holding the movie we are targeting, this will be from API, formatted before here
-        var movieTarg;
 
         //Object holding user data 
         var uData = {
@@ -94,6 +109,8 @@
             var movie = $(this).attr("data-name");
 
             var queryURL = OMDB + movie + OMDBkey;
+
+            getIMDB(movie);
 
 
             // Creates AJAX call for the specific movie button being clicked
