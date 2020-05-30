@@ -31,7 +31,7 @@ $.ajax({
           success: function(data) {
           console.log(data);
 
-          $("#movie-list").append("<h1>" + data.Title + "</h1> <br>" + "<img src='" + data.Poster + "'> <br>" + data.Released + "<br> Rated: " + data.Rated + "<br> Genre: " + data.Genre + "<br> Plot: " + data.Plot + "<br> <hr>");
+          $("#movie-list").append("<img src='" + data.Poster + "'> <br>" + "<h1>" + data.Title + "</h1>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<br> Plot: " + data.Plot + "<br> <hr>");
  
           }
         });
@@ -44,3 +44,5 @@ $.ajax({
 
 // to do:
 // display review arrays
+// add CSS, page layout
+// Quotes, where to watch, related movies
