@@ -14,9 +14,20 @@ $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function(response) {
+
     console.log(response);
+
+    var movieTitle = response.title;
+    var movieYear = response.year;
+    var movieRating = response.rated;
+    var movieGenre = response.genre;
+    var moviePlot = response.plot;
+    var moviePoster = response.poster;
+
     var myJSON = JSON.stringify(response);
+    
     document.getElementById("movie-view").innerHTML = myJSON;
+
   });
 
   // -----------------------------------------------------------------------
@@ -39,4 +50,4 @@ $.ajax({
 // Genre
 // Plot
 // Poster
-// Rarings --> Source & Value
+// Ratings --> Source & Value
