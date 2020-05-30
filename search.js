@@ -16,38 +16,23 @@ $.ajax({
   }).then(function(response) {
 
     console.log(response);
-
-    var movieTitle = response.title;
-    var movieYear = response.year;
-    var movieRating = response.rated;
-    var movieGenre = response.genre;
-    var moviePlot = response.plot;
-    var moviePoster = response.poster;
-
-    var myJSON = JSON.stringify(response);
     
-    document.getElementById("movie-view").innerHTML = myJSON;
+      // storing the data from the AJAX request in the results variable
+      var results = response.Search;
 
-  });
+      // Looping through each result item
+      for (var i = 0; i < results.length; i++) {
 
-  // -----------------------------------------------------------------------
+        // Creating a paragraph tag with the result item's rating
+        var movieTitle = $("<h1>").text(response.Search[i].Title);
+        var movieYear = $("<p>").text("Year: " + response.Search[i].Year);
+        var movieRating = $("<p>").text("Rating: " + response.Search[i].Rated);
+        var movieGenre = $("<p>").text("Genre: " + response.Search[i].Genre);
+        var moviePlot = $("<p>").text("Plot: " + response.Search[i].Plot);
+        var moviePoster = $("<img>").attr("src", response.Search[i].Poster);
 
-  // To do:
-  // Display movie information with API codes
-  // loop through to display all matching results
-
-
-
+        $("#movie-view").empty();
+        $("#movie-view").append(movieTitle, movieYear, movieRating, movieGenre, moviePlot, moviePoster);
+      }
 });
-
-
-// API Codes:
-// Search (array of matching movies)
-// Title
-// Year
-// Rated
-// Release Date
-// Genre
-// Plot
-// Poster
-// Ratings --> Source & Value
+});
