@@ -1,0 +1,30 @@
+* { 
+    box-sizing: border-box; 
+    background-color: rgb(139, 135, 129);
+}
+
+body { font-family: sans-serif; }
+
+
+.carousel {
+  background: rgb(139, 135, 129);
+}
+
+.carousel-cell {
+  width: 50%;
+  height: 150px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+  text-align: center;
+  content: img;
+  line-height: 150px;
+  font-size: 80px;
+  color: white;
+}
