@@ -5,49 +5,26 @@
 
 body { font-family: sans-serif; }
 
-h4 {
-    color: white;
-}
-
-.header{
-    text-align: right;
-}
-.flickity-page-dots {
-    visibility:hidden;
-}
 
 .carousel {
   background: rgb(139, 135, 129);
 }
 
-.flickity-prev-next-button.previous {
-    left: 10px;
-    background-color: transparent;
-}
-.flickity-prev-next-button.next {
-    right: 10px;
-    background-color: transparent;
-}
-.flickity-button-icon {
-    background-color: transparent;
-    color: white;
-}
 .carousel-cell {
-  width: 150px;
-  height: 200px;
+  width: 50%;
+  height: 150px;
   margin-right: 10px;
   background: #8C8;
   border-radius: 5px;
   counter-increment: carousel-cell;
-  background-image: url("https://m.media-amazon.com/images/M/MV5BODViZDg3ZjYtMzhiYS00YTVkLTk4MzktYWUxMTlkYjc1NjdlXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg");
-  background-size: cover;
-  background-position: center ;
 }
 
 /* cell number */
 .carousel-cell:before {
   display: block;
   text-align: center;
+  content: img;
+  line-height: 150px;
   font-size: 80px;
   color: white;
 }
