@@ -60,7 +60,11 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
-  margin: 0px; }
+  margin: 0; }
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
 
 hr {
   -webkit-box-sizing: content-box;
@@ -69,30 +73,11 @@ hr {
   overflow: visible; }
 
 pre {
-  font-family: 'Roboto', sans-serif;
+  font-family: monospace, monospace;
   font-size: 1em; }
 
-
-.backNav {
-  position: fixed;
-  top: 35px;
-  left: 35px;
-  color: white;
-  text-decoration: underline;  }
-
-.backArrow {
-  padding-right: 5px;  }
-
-.logo { 
-  position: fixed;
-  top: 28px;
-  right: 35px;
-  color: white;
-
-  }
-  
 a {
-  background-color: transparent;  }
+  background-color: transparent; }
 
 abbr[title] {
   border-bottom: none;
@@ -134,9 +119,12 @@ input,
 optgroup,
 select,
 textarea {
+
+  font-family: inherit;
   background-color: transparent;
   font-family: 'Roboto', sans-serif;
   color: white;
+
   font-size: 100%;
   line-height: 1.15;
   margin: 0; }
@@ -234,13 +222,13 @@ html {
           box-sizing: inherit; }
 
 body {
-  margin: 20;
+  margin: 0;
   padding: 0;
-  background: linear-gradient(to left, #4E4E4E , #262626);
-  font-family: 'Roboto', sans-serif;
+  background: #fefefe;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
   line-height: 1.5;
-  color: white;
+  color: #0a0a0a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -2228,8 +2216,6 @@ td {
   padding: 0; }
 
 p {
-  font-weight: lighter;
-  width: 90%;
   margin-bottom: 1rem;
   font-size: inherit;
   line-height: 1.6;
@@ -2270,6 +2256,8 @@ h6, .h6 {
     color: #cacaca; }
 
 h1, .h1 {
+
+  font-size: 1.5rem;
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -2278,7 +2266,6 @@ h1, .h1 {
   margin-bottom: 0.5rem; }
 
 h2, .h2 {
-  font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.4;
   margin-top: 0;
@@ -2291,7 +2278,6 @@ h3, .h3 {
   margin-bottom: 0.5rem; }
 
 h4, .h4 {
-  font-weight: bold;
   font-size: 1.125rem;
   line-height: 1.4;
   margin-top: 0;
