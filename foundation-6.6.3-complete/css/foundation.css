@@ -13,6 +13,23 @@
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
+.backNav {
+  position: fixed;
+  top: 35px;
+  left: 35px;
+  color: white;
+  text-decoration: underline;  }
+
+.backArrow {
+  padding-right: 5px;  }
+
+.logo { 
+  position: fixed;
+  top: 28px;
+  right: 35px;
+  color: white;
+}
+
 .mainSearchMargin {
   margin-top: 100px;
   margin-left: 35px;
@@ -33,7 +50,6 @@
 .searchButton {
   height: 60px;
   padding: 10px;
-
   float: left;
   width: 15%;
   background: transparent;
@@ -73,7 +89,7 @@ hr {
   overflow: visible; }
 
 pre {
-  font-family: monospace, monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 1em; }
 
 a {
@@ -92,7 +108,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 1em; }
 
 small {
@@ -224,11 +240,11 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: #fefefe;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  background: linear-gradient(to left, #4E4E4E, #262626);;
+  font-family: 'Roboto', sans-serif;
   font-weight: normal;
   line-height: 1.5;
-  color: #0a0a0a;
+  color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -2216,6 +2232,8 @@ td {
   padding: 0; }
 
 p {
+  width: 85%;
+  font-weight: lighter;
   margin-bottom: 1rem;
   font-size: inherit;
   line-height: 1.6;
@@ -2241,7 +2259,7 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   color: inherit;
@@ -2279,6 +2297,7 @@ h3, .h3 {
 
 h4, .h4 {
   font-size: 1.125rem;
+  font-weight: bold;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
