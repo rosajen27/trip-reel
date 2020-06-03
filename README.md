@@ -1,18 +1,21 @@
-# Project_1
+# Project 1: Trip Reel
 
-TripReel
+Deployed Website: (insert URL here)
 
-Movie Search Web Form
+## Criteria
+```
+As a mobile user I want to find information about a movie. 
+So that I can find out whether the movie is rated well, where I can stream the movie, and related moviess all in one place.
+```
 
-Search for a Movie
+## Movie Search Web Form
+Search for a Movie & Return:
+- Title - Omdb API
+- Poster - Omdb API
+- Quotes - MovieQuotesAPI
+- Plot - Omdb API
+- Reviews - Omdb API
+- Where to watch - Utelly API
+- Similar movies based on genre - Omdb API
 
-Return
-	Title - Omdb API
-	Poster - Omdb API
-	Quotes - MovieQuotesAPI
-	Plot - Omdb API
-	Reviews - Omdb API
-	Where to watch - Utelly API
-	Similar movies(genres?) - Omdb API
-
-As a mobile user I want to find information about a movie. So that I can find out whether the movie is rated well and where I can stream the movie from in once place.
+The following image demonstrates the application functionality: (insert image of index.html)
