@@ -1,20 +1,12 @@
-* { 
-    box-sizing: border-box; 
-    background-color: rgb(139, 135, 129);
-}
-
-body { font-family: sans-serif; }
-
-h4{
-    color:white;
+* {
+  box-sizing: border-box;
 }
 
 .flickity-page-dots {
     visibility:hidden;
 }
-
-.carousel {
-  background: rgb(139, 135, 129);
+.carousel1 {
+    background: transparent;
 }
 
 .flickity-prev-next-button.previous {
@@ -30,11 +22,10 @@ h4{
     color: white;
 }
 
-
 .carousel-cell {
   width: 150px;
   height: 200px;
-  margin-right: 10px;
+  margin: 10px;
   background-image: url("https://m.media-amazon.com/images/M/MV5BODViZDg3ZjYtMzhiYS00YTVkLTk4MzktYWUxMTlkYjc1NjdlXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg");
   background-size: cover;
   background-position: center;
