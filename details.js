@@ -5,7 +5,7 @@ function formatMovie(obj) {
     form = {
         title: obj[0].title.title,
         runtime: obj[0].title.runningTimeInMinutes,
-        release: obj[0].title.year,
+        release: obj[1].Released,
         genres: obj[0].genres,
         plotOutline: obj[0].plotOutline.text,
         plotSummary: obj[0].plotSummary.text,
