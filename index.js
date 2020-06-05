@@ -67,7 +67,6 @@ $.ajax({
 // var OMDB = "https://www.omdbapi.com/?t=";
 // var OMDBkey = "&apikey=f9d78f5a";
 
-
 // // Initial array of movies
 // var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
 
@@ -120,7 +119,19 @@ $.ajax({
 //         pl.text(response.Plot);
 //         holder.append(pl);
 
+
 //     });
+    /** 
+     * Need more work on how we are going to 
+     * propogate. Have first result be the closest to
+     * the search query, follow by movies in same genre,
+     * cascade down most relavent search results. Potentialy
+     * add filters?
+     * 
+    let genreTag = "#" + $(this).attr("data-genre");
+    // Deletes the movies prior to adding new movies
+    // (this is necessary otherwise you will have repeat buttons)
+    $(genreTag).empty();
 
 // }
 
@@ -134,6 +145,25 @@ $.ajax({
 //     // Loops through the array of movies
 //     for (var i = 0; i < movies.length; i++) {
 
+        let movieObj = makeMovObj(movies[i]);
+        console.log(movieObj);
+        console.log(movies);
+        var a = $("carousel-cell");
+        // Adds a class of movie to our button
+        a.addClass("movie");
+        a.css("background-image", `url(${movieObj.poster})`);
+        // Added a data-attribute
+        a.attr("data-name", movies[i]);
+        a.attr("data-genre", movieObj.genres);
+        // Added the button to the buttons-view div
+        $(genreTag).append(a);
+    }
+
+    Following is placeholder to help development
+    */
+
+
+    
 //         // Then dynamicaly generates buttons for each movie in the array
 //         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
 //         var a = $("<button>");
@@ -168,3 +198,4 @@ $.ajax({
 
 // // Calling the renderButtons function to display the initial buttons
 // renderButtons();
+
