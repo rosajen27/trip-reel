@@ -1,47 +1,111 @@
+function formatMovie(obj) {
+    form = {
+        title: obj.title.title,
+        runtime: obj.title.runningTimeInMinutes,
+        release: obj.title.year,
+        genres: obj.genres,
+        plotOutline: obj.plotOutline.text,
+        plotSummary: obj.plotSummary.text,
+        rating: obj.certificates.US[0].certificate,
+        ratingR: obj.certificates.US[0].ratingReason,
+        reviewRate: obj.ratings.rating,
+        poster: obj.title.image.url,
+
+
+    }
+    return form;
+
+}
+
+function getIMDbObj(movie) {
+    var queryURL = OMDB + movie + OMDBkey;
+
+    var promise = new Promise(function (resolve, reject) {
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + response.imdbID,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                    "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
+                }
+            }
+            $.ajax(settings).then(function (response) {
+                resolve(response);
+            });
+        });
+    });
+    return promise;
+}
+
+//Use this to get an object filled with movie info
+function makeMovObj(movie) {
+
+    var promise = new Promise(function (resolve, reject) {
+        getIMDbObj(movie).then(function (i) {
+            resolve(formatMovie(i));
+        });
+    });
+    return promise;
+}
+//This is how you use the makeMovObj function
+var movieObj;
+makeMovObj(movies[i]).then(function (result) {
+    console.dir(result);
+    movieObj = result
+});
+
+
 // This .on("click") function will trigger the AJAX Call
-$("#search-button").on("click", function(event) {
+$("#search-button").on("click", function (event) {
     event.preventDefault();
 
-// grab text from the search-input box
-var movie = $("#search-input").val();
+    // grab text from the search-input box
+    var movie = $("#search-input").val();
 
-// hit the queryURL with $ajax, response will return an array with movies matching searched title
-var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
+    // hit the queryURL with $ajax, response will return an array with movies matching searched title
+    var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
 
-$.ajax({
-    url: queryURL,
-    method: "GET",
-  }).then(function(response) {
-    
-    $("#carouselDiv").hide();
-    
-      // Store the data from the AJAX request
-      let results = response.Search;
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function (response) {
 
-      // Looping through each result item
-      results.forEach(function(movie){
+        $("#carouselDiv").hide();
 
-        // Obtain movieIDs in order to call another API
-        var movieID = movie.imdbID;
-        console.log(movieID);
+        // Store the data from the AJAX request
+        let results = response.Search;
 
-        // Second API
-        var queryURL2 = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
-        $.ajax({
-          url: queryURL2,
-          method: "GET",
-          success: function(data) {
-          console.log(data);
+        // Looping through each result item
+        results.forEach(function (movie) {
 
-          $("#movie-list").append("<img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
- 
-          }
+            // Obtain movieIDs in order to call another API
+            var movieID = movie.imdbID;
+            console.log(movieID);
+
+            // Second API
+            var queryURL2 = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
+            $.ajax({
+                url: queryURL2,
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+
+                    $("#movie-list").append("<img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
+
+                }
+            });
+
         });
 
-      });
+    });
+});
 
-});
-});
 
 // //Need to grab movie ID through OMDb and send that to IMDb for more detail.
 // var movieID;
@@ -60,9 +124,6 @@ $.ajax({
 // $.ajax(settings).then(function (response) {
 //     console.log(response);
 // });
-
-
-
 
 // var OMDB = "https://www.omdbapi.com/?t=";
 // var OMDBkey = "&apikey=f9d78f5a";
@@ -121,17 +182,17 @@ $.ajax({
 
 
 //     });
-    /** 
-     * Need more work on how we are going to 
-     * propogate. Have first result be the closest to
-     * the search query, follow by movies in same genre,
-     * cascade down most relavent search results. Potentialy
-     * add filters?
-     * 
-    let genreTag = "#" + $(this).attr("data-genre");
-    // Deletes the movies prior to adding new movies
-    // (this is necessary otherwise you will have repeat buttons)
-    $(genreTag).empty();
+/**
+ * Need more work on how we are going to
+ * propogate. Have first result be the closest to
+ * the search query, follow by movies in same genre,
+ * cascade down most relavent search results. Potentialy
+ * add filters?
+ *
+let genreTag = "#" + $(this).attr("data-genre");
+// Deletes the movies prior to adding new movies
+// (this is necessary otherwise you will have repeat buttons)
+$(genreTag).empty();
 
 // }
 
@@ -145,25 +206,25 @@ $.ajax({
 //     // Loops through the array of movies
 //     for (var i = 0; i < movies.length; i++) {
 
-        let movieObj = makeMovObj(movies[i]);
-        console.log(movieObj);
-        console.log(movies);
-        var a = $("carousel-cell");
-        // Adds a class of movie to our button
-        a.addClass("movie");
-        a.css("background-image", `url(${movieObj.poster})`);
-        // Added a data-attribute
-        a.attr("data-name", movies[i]);
-        a.attr("data-genre", movieObj.genres);
-        // Added the button to the buttons-view div
-        $(genreTag).append(a);
-    }
+    let movieObj = makeMovObj(movies[i]);
+    console.log(movieObj);
+    console.log(movies);
+    var a = $("carousel-cell");
+    // Adds a class of movie to our button
+    a.addClass("movie");
+    a.css("background-image", `url(${movieObj.poster})`);
+    // Added a data-attribute
+    a.attr("data-name", movies[i]);
+    a.attr("data-genre", movieObj.genres);
+    // Added the button to the buttons-view div
+    $(genreTag).append(a);
+}
 
-    Following is placeholder to help development
-    */
+Following is placeholder to help development
+*/
 
 
-    
+
 //         // Then dynamicaly generates buttons for each movie in the array
 //         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
 //         var a = $("<button>");
