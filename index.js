@@ -1,95 +1,9 @@
-function formatMovie(obj) {
-    form = {
-        title: obj[0].title.title,
-        runtime: obj[0].title.runningTimeInMinutes,
-        release: obj[0].title.year,
-        genres: obj[0].genres,
-        plotOutline: obj[0].plotOutline.text,
-        plotSummary: obj[0].plotSummary.text,
-        rating: obj[0].certificates.US[0].certificate,
-        ratingR: obj[0].certificates.US[0].ratingReason,
-        reviewRate: obj[0].ratings.rating,
-        metascore: obj[1].Metascore,
-        poster: obj[0].title.image.url,
-        actors: obj[1].Actors,
-        writer: obj[1].Writer,
-        awards: obj[1].Awards,
-        director: obj[1].Director,
-        languages: obj[1].Language,
-        type: obj[1].Type,
-        
-    }
-    return form;
-
-}
-
-function getIMDbObj(movie) {
-    var OMDB = "https://www.omdbapi.com/?t=";
-    var OMDBkey = "&apikey=f9d78f5a";
-    var queryURL = OMDB + movie + OMDBkey;
-    var omdbInf;
-    var promise = new Promise(function (resolve, reject) {
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            omdbInf = response;
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + response.imdbID,
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                    "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
-                }
-            }
-            $.ajax(settings).then(function (response) {
-                resolve([response, omdbInf]);
-            });
-        });
-    });
-    return promise;
-}
-
-//Use this to get an object filled with movie info
-function makeMovObj(movie) {
-
-    var promise = new Promise(function (resolve, reject) {
-        getIMDbObj(movie).then(function (i) {
-            console.dir(i);
-            resolve(formatMovie(i));
-        });
-    });
-    return promise;
-}
-//This is how you use the makeMovObj function
-var movieObj;
-var movies = [];
-for (var i = 0; i < movies.length; i++) {
-    makeMovObj(movies[i]).then(function (result) {
-        console.dir(result);
-        movieObj = result
-    });
-}
-
-
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
     event.preventDefault();
 
     // grab text from the search-input box
     var movie = $("#search-input").val();
-
-    var movieObj;
-    var movies = [];
-    movies.push(movie);
-    for (var i = 0; i < movies.length; i++) {
-        makeMovObj(movies[i]).then(function (result) {
-            console.dir(result);
-            movieObj = result
-        });
-    }
 
     // hit the queryURL with $ajax, response will return an array with movies matching searched title
     var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
@@ -119,7 +33,7 @@ $("#search-button").on("click", function (event) {
                 success: function (data) {
                     console.log(data);
 
-                    $("#movie-list").append("<img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
+                    $("#movie-list").append("<div id='"+data.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')+"'> <img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr></div>");
 
                 }
             });
@@ -128,7 +42,10 @@ $("#search-button").on("click", function (event) {
 
     });
 });
-
+$(document).on("click", ".resultImg", function(){
+    window.location.href = 'details.html?' + $(this).parent().attr("id") ;
+    console.log($(this).parent().attr("id"))
+});
 
 // //Need to grab movie ID through OMDb and send that to IMDb for more detail.
 // var movieID;
