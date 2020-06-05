@@ -1,116 +1,164 @@
-//Need to grab movie ID through OMDb and send that to IMDb for more detail.
-var movieID;
-
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + movieID,
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-host": "imdb8.p.rapidapi.com",
-        "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
-    }
-}
-
-$.ajax(settings).then(function (response) {
-    console.log(response);
-});
-
-
-
-
 var OMDB = "https://www.omdbapi.com/?t=";
 var OMDBkey = "&apikey=f9d78f5a";
+var genres = [];
+var movies = [];
+
+function getIMDbObj(movie) {
+    var queryURL = OMDB + movie + OMDBkey;
+
+    var promise = new Promise( function(resolve, reject) {
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + response.imdbID,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                    "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
+                }
+            }
+            $.ajax(settings).then(function (response) {
+                resolve(response);
+            });
+        }); 
+    }); 
+    return promise;
+
+}
 
 
-// Initial array of movies
-var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+function formatMovie(obj) {
+    form = {
+        title: obj.title.title,
+        runtime: obj.title.runningTimeInMinutes,
+        release: obj.title.year,
+        genres: obj.genres,
+        plotOutline: obj.plotOutline.text,
+        plotSummary: obj.plotSummary.text,
+        rating: obj.certificates.US[0].certificate,
+        ratingR: obj.certificates.US[0].ratingReason,
+        reviewRate: obj.ratings.rating,
+        poster: obj.title.image.url,
+
+
+    }
+    return form;
+
+}
+
+//Use this to get an object filled with movie info
+function makeMovObj(movie) {
+
+    var promise = new Promise(function (resolve, reject) {
+        getIMDbObj(movie).then(function (i) {
+            resolve(formatMovie(i));
+        });
+    });
+    return promise;
+}
+
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo() {
 
+    console.log("Clicked on a movie");
 
+    /**  YOUR CODE GOES HERE!!!
+     * 
+     * deatals drop down when a Poster is clicked
+     * 
+     * 
+    var holder = $("#movies-view");
+    holder.empty();
 
-    var movie = $(this).attr("data-name");
+    var rd = $("<h5>");
+    rd.text(response.Released);
+    holder.append(rd);
 
-    var queryURL = OMDB + movie + OMDBkey;
-
-
-    // Creates AJAX call for the specific movie button being clicked
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        // YOUR CODE GOES HERE!!!
-        var holder = $("#movies-view");
-        holder.empty();
-
-        var im = $("<img>");
-        im.attr("src", response.Poster);
-        holder.append(im);
-
-        var rate = $("<h4>");
-        rate.text(response.Rated);
-        holder.append(rate);
-
-        var rateing = $("<h4>");
-        var ratings = response.Ratings;
-        console.log(ratings);
-        var rating;
-        for (var r = 0; r < ratings.length; r++) {
-            if (ratings[r].Source === "Internet Movie Database") {
-                rating = ratings[r].Value;
-            }
-        }
-
-        rateing.text(rating);
-        holder.append(rateing);
-
-        var rd = $("<h5>");
-        rd.text(response.Released);
-        holder.append(rd);
-
-        var pl = $("<h2>");
-        pl.text(response.Plot);
-        holder.append(pl);
-
-    });
+    var pl = $("<h2>");
+    pl.text(response.Plot);
+    holder.append(pl);
+*/
 
 }
 
 // Function for displaying movie data
 function renderButtons() {
 
+    /** 
+     * Need more work on how we are going to 
+     * propogate. Have first result be the closest to
+     * the search query, follow by movies in same genre,
+     * cascade down most relavent search results. Potentialy
+     * add filters?
+     * 
+    let genreTag = "#" + $(this).attr("data-genre");
     // Deletes the movies prior to adding new movies
     // (this is necessary otherwise you will have repeat buttons)
-    $("#buttons-view").empty();
+    $(genreTag).empty();
 
     // Loops through the array of movies
     for (var i = 0; i < movies.length; i++) {
 
-        // Then dynamicaly generates buttons for each movie in the array
-        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-        var a = $("<button>");
+        let movieObj = makeMovObj(movies[i]);
+        console.log(movieObj);
+        console.log(movies);
+        var a = $("carousel-cell");
         // Adds a class of movie to our button
         a.addClass("movie");
-        a.addClass("hollow button");
+        a.css("background-image", `url(${movieObj.poster})`);
         // Added a data-attribute
         a.attr("data-name", movies[i]);
-        // Provided the initial button text
-        a.text(movies[i]);
+        a.attr("data-genre", movieObj.genres);
         // Added the button to the buttons-view div
-        $("#buttons-view").append(a);
+        $(genreTag).append(a);
+    }
+
+    Following is placeholder to help development
+    */
+
+
+    for (var i = 0; i < movies.length; i++) {
+        var movieObj;
+        makeMovObj(movies[i]).then(function (result) {
+            console.dir(result);
+            movieObj = result
+        });
+
+
+        let genreTag = "#ActionAdventure"; //+ movieObj.genres[0];
+        // Deletes the movies prior to adding new movies
+        // (this is necessary otherwise you will have repeat buttons)
+        $(genreTag).empty();
+
+        console.log("movies " + movies);
+        console.log("movie obj " + movieObj);
+
+        var a = $("carousel-cell");
+        a.attr("data-name", movies[i]);
+        // Adds a class of movie to our button
+        a.addClass("movie");
+        a.css("background-image", `url(${movieObj.poster})`);
+        // Added a data-attribute
+        a.attr("data-name", movies[i]);
+        a.attr("data-genre", movieObj.genres);
+        // Added the button to the buttons-view div
+        $(genreTag).append(a);
     }
 }
 
 // This function handles events where the add movie button is clicked
-$("#add-movie").on("click", function (event) {
+$("#movie-search").on("click", function (event) {
     event.preventDefault();
+    console.log("Clicked search");
     // This line of code will grab the input from the textbox
     var movie = $("#movie-input").val().trim();
 
-    // The movie from the textbox is then added to our array
+    // First movie in Movies is the searched movie; movies[0] == search query
     movies.push(movie);
 
     // Calling renderButtons which handles the processing of our movie array
@@ -121,5 +169,4 @@ $("#add-movie").on("click", function (event) {
 // Adding click event listeners to all elements with a class of "movie"
 $(document).on("click", ".movie", displayMovieInfo);
 
-// Calling the renderButtons function to display the initial buttons
-renderButtons();
+
