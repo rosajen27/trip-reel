@@ -1,3 +1,4 @@
+
 const obj = JSON.parse(window.localStorage.getItem('movie'));
 
 var moviePoster = $("<img class='headerPic'>").attr("src", obj.poster);                 
