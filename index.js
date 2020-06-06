@@ -9,7 +9,7 @@ $("#search-button").on("click", function (event) {
   var movie = $("#search-input").val();
 
   // hit the queryURL with $ajax, response will return an array with movies matching searched title
-  var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
+  var queryURL = "https://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
 
   $.ajax({
     url: queryURL,
@@ -29,7 +29,7 @@ $("#search-button").on("click", function (event) {
       console.log(movieID);
 
       // Second API
-      var queryURL2 = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
+      var queryURL2 = "https://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
       $.ajax({
         url: queryURL2,
         method: "GET",
@@ -54,7 +54,7 @@ $("#movie-list").on('click', 'img, h4', function (event) {
 
   var movieID = event.target.id;
 
-  var queryURL = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
+  var queryURL = "https://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
 
   $.ajax({
     url: queryURL,
