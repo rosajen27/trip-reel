@@ -239,5 +239,7 @@ $("#movie-list").on('click', 'h4', function (event) {
 
 
   });
+
 });
 // end of code //
+
