@@ -36,7 +36,7 @@ $("#search-button").on("click", function (event) {
         success: function (data) {
           console.log(data);
 
-          $("#movie-list").append("<img class='resultImg' src='" + data.Poster + "'>" + "<h4 id=" + data.imdbID + ">" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
+          $("#movie-list").append("<img class='resultImg' id='" + data.imdbID + "' src='" + data.Poster + "'>" + "<h4 id=" + data.imdbID + ">" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
 
         }
       });
@@ -49,7 +49,7 @@ $("#search-button").on("click", function (event) {
 
 
 
-$("#movie-list").on('click', 'h4', function (event) {
+$("#movie-list").on('click', 'img, h4', function (event) {
   event.preventDefault();
 
   var movieID = event.target.id;
