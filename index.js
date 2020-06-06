@@ -1,5 +1,6 @@
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
+
   event.preventDefault();
 
   // grab text from the search-input box
@@ -41,6 +42,12 @@ $("#search-button").on("click", function (event) {
     });
 
   });
+
+    
+$(document).on("click", ".resultImg", function(){
+    window.location.href = 'details.html?' + $(this).parent().attr("id") ;
+    console.log($(this).parent().attr("id"))
+
 });
 
 // //Need to grab movie ID through OMDb and send that to IMDb for more detail.
@@ -60,9 +67,6 @@ $("#search-button").on("click", function (event) {
 // $.ajax(settings).then(function (response) {
 //     console.log(response);
 // });
-
-
-
 
 // var OMDB = "https://www.omdbapi.com/?t=";
 // var OMDBkey = "&apikey=f9d78f5a";
@@ -121,13 +125,15 @@ $("#search-button").on("click", function (event) {
 
 
 //     });
-/** 
- * Need more work on how we are going to 
+
+/**
+ * Need more work on how we are going to
+
  * propogate. Have first result be the closest to
  * the search query, follow by movies in same genre,
  * cascade down most relavent search results. Potentialy
  * add filters?
- * 
+ 
 let genreTag = "#" + $(this).attr("data-genre");
 // Deletes the movies prior to adding new movies
 // (this is necessary otherwise you will have repeat buttons)
