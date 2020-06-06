@@ -66,15 +66,16 @@ function makeMovObj(movie) {
     });
     return promise;
 }
+
 //This is how you use the makeMovObj function
-var movieObj;
-var movies = [];
-for (var i = 0; i < movies.length; i++) {
-    makeMovObj(movies[i]).then(function (result) {
-        console.dir(result);
-        movieObj = result
-    });
-}
+// var movieObj;
+// var movies = [];
+// for (var i = 0; i < movies.length; i++) {
+//     makeMovObj(movies[i]).then(function (result) {
+//         console.dir(result);
+//         movieObj = result
+//     });
+// }
 
 var movie = decodeURI(window.location.search.substring(1));
 var movieObj;
