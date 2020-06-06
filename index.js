@@ -46,10 +46,7 @@ $("#search-button").on("click", function (event) {
 
     
 // $(document).on("click", ".resultImg", function(){
-<<<<<<< Updated upstream
-//     window.location.href = 'details2.html';
-//     console.log($(this).parent().attr("id"))
-=======
+
 //     window.location.href = 'details.html?' + $(this).parent().attr("id") ;
 //     console.log($(this).parent().attr("id"))
 
@@ -201,7 +198,7 @@ Following is placeholder to help development
 
 //     // Calling renderButtons which handles the processing of our movie array
 //     renderButtons();
->>>>>>> Stashed changes
+
 
 // });
 
@@ -236,10 +233,11 @@ $("#movie-list").on('click', 'h4', function (event) {
 
   });
 });
-<<<<<<< Updated upstream
-// end of code //
-=======
+
 });
 
 }
->>>>>>> Stashed changes
+});
+// end of code //
+
+
