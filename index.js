@@ -1,3 +1,5 @@
+window.onload = function () {
+
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
 
@@ -7,7 +9,7 @@ $("#search-button").on("click", function (event) {
   var movie = $("#search-input").val();
 
   // hit the queryURL with $ajax, response will return an array with movies matching searched title
-  var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
+  var queryURL = "https://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
 
   $.ajax({
     url: queryURL,
@@ -27,14 +29,14 @@ $("#search-button").on("click", function (event) {
       console.log(movieID);
 
       // Second API
-      var queryURL2 = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
+      var queryURL2 = "https://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
       $.ajax({
         url: queryURL2,
         method: "GET",
         success: function (data) {
           console.log(data);
 
-          $("#movie-list").append("<img class='resultImg' src='" + data.Poster + "'>" + "<h4 id=" + data.imdbID + ">" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
+          $("#movie-list").append("<img class='resultImg' id='" + data.imdbID + "' src='" + data.Poster + "'>" + "<h4 id=" + data.imdbID + ">" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr>");
 
         }
       });
@@ -45,7 +47,7 @@ $("#search-button").on("click", function (event) {
 
     
 $(document).on("click", ".resultImg", function(){
-    window.location.href = 'https://jakesifo.github.io/Project_1/details.html?' + $(this).parent().attr("id") ;
+    window.location.href = 'details.html?' + $(this).parent().attr("id") ;
     console.log($(this).parent().attr("id"))
 
 });
@@ -144,79 +146,15 @@ $(genreTag).empty();
 // // Function for displaying movie data
 // function renderButtons() {
 
-//     // Deletes the movies prior to adding new movies
-//     // (this is necessary otherwise you will have repeat buttons)
-//     $("#buttons-view").empty();
-
-//     // Loops through the array of movies
-//     for (var i = 0; i < movies.length; i++) {
-
-    let movieObj = makeMovObj(movies[i]);
-    console.log(movieObj);
-    console.log(movies);
-    var a = $("carousel-cell");
-    // Adds a class of movie to our button
-    a.addClass("movie");
-    a.css("background-image", `url(${movieObj.poster})`);
-    // Added a data-attribute
-    a.attr("data-name", movies[i]);
-    a.attr("data-genre", movieObj.genres);
-    // Added the button to the buttons-view div
-    $(genreTag).append(a);
-}
-
-Following is placeholder to help development
-*/
 
 
 
-//         // Then dynamicaly generates buttons for each movie in the array
-//         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-//         var a = $("<button>");
-//         // Adds a class of movie to our button
-//         a.addClass("movie");
-//         a.addClass("hollow button");
-//         // Added a data-attribute
-//         a.attr("data-name", movies[i]);
-//         // Provided the initial button text
-//         a.text(movies[i]);
-//         // Added the button to the buttons-view div
-//         $("#buttons-view").append(a);
-//     }
-// }
-
-// // This function handles events where the add movie button is clicked
-// $("#add-movie").on("click", function (event) {
-//     event.preventDefault();
-//     // This line of code will grab the input from the textbox
-//     var movie = $("#movie-input").val().trim();
-
-//     // The movie from the textbox is then added to our array
-//     movies.push(movie);
-
-//     // Calling renderButtons which handles the processing of our movie array
-//     renderButtons();
-
-// });
-
-// // Adding click event listeners to all elements with a class of "movie"
-// $(document).on("click", ".movie", displayMovieInfo);
-
-// // Calling the renderButtons function to display the initial buttons
-// renderButtons();
-
-
-
-
-
-
-// 6-5-2020 Jen //
-$("#movie-list").on('click', 'h4', function (event) {
+$("#movie-list").on('click', 'img, h4', function (event) {
   event.preventDefault();
 
   var movieID = event.target.id;
 
-  var queryURL = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
+  var queryURL = "https://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
 
   $.ajax({
     url: queryURL,
@@ -235,11 +173,8 @@ $("#movie-list").on('click', 'h4', function (event) {
     }
     
     window.localStorage.setItem('movie', JSON.stringify(movieDetails));
-    window.location.href = "https://jakesifo.github.io/Project_1/details2.html"
-
-
+    window.location.href = "details2.html"
   });
 });
 });
-// end of code //
-
+}

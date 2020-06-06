@@ -1,3 +1,4 @@
+
 const obj = JSON.parse(window.localStorage.getItem('movie'));
 
 var moviePoster = $("<img class='headerPic'>").attr("src", obj.poster);                 
@@ -12,7 +13,7 @@ if (obj.metascore === "N/A") {
     movieMetascore = "Metascore Unavailable";
 }
 
-var moviePlot = $("<h4>").text("Plot: " + obj.plot);
+var moviePlot = $("<p>").text(obj.plot);
 
 $("#headerPic").append(moviePoster);
 $("#title").append(movieTitle);
