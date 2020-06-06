@@ -1,3 +1,4 @@
+window.onload = function () {
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
 
@@ -44,11 +45,12 @@ $("#search-button").on("click", function (event) {
   });
 
     
-$(document).on("click", ".resultImg", function(){
-    window.location.href = 'details.html?' + $(this).parent().attr("id") ;
-    console.log($(this).parent().attr("id"))
+// $(document).on("click", ".resultImg", function(){
 
-});
+//     window.location.href = 'details.html?' + $(this).parent().attr("id") ;
+//     console.log($(this).parent().attr("id"))
+
+// });
 
 // //Need to grab movie ID through OMDb and send that to IMDb for more detail.
 // var movieID;
@@ -197,20 +199,11 @@ Following is placeholder to help development
 //     // Calling renderButtons which handles the processing of our movie array
 //     renderButtons();
 
+
 // });
 
-// // Adding click event listeners to all elements with a class of "movie"
-// $(document).on("click", ".movie", displayMovieInfo);
-
-// // Calling the renderButtons function to display the initial buttons
-// renderButtons();
 
 
-
-
-
-
-// 6-5-2020 Jen //
 $("#movie-list").on('click', 'h4', function (event) {
   event.preventDefault();
 
@@ -240,6 +233,11 @@ $("#movie-list").on('click', 'h4', function (event) {
 
   });
 });
+
+});
+
+}
 });
 // end of code //
+
 
