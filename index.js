@@ -45,7 +45,7 @@ $("#search-button").on("click", function (event) {
 
     
 $(document).on("click", ".resultImg", function(){
-    window.location.href = 'details.html?' + $(this).parent().attr("id") ;
+    window.location.href = 'https://jakesifo.github.io/Project_1/details.html?' + $(this).parent().attr("id") ;
     console.log($(this).parent().attr("id"))
 
 });
@@ -235,7 +235,7 @@ $("#movie-list").on('click', 'h4', function (event) {
     }
     
     window.localStorage.setItem('movie', JSON.stringify(movieDetails));
-    window.location.href = "details2.html"
+    window.location.href = "https://jakesifo.github.io/Project_1/details2.html"
 
 
   });
