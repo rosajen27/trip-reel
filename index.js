@@ -121,5 +121,12 @@ $("#add-movie").on("click", function (event) {
 // Adding click event listeners to all elements with a class of "movie"
 $(document).on("click", ".movie", displayMovieInfo);
 
+<<<<<<< Updated upstream
 // Calling the renderButtons function to display the initial buttons
 renderButtons();
+=======
+  });
+});
+});
+// end of code //
+>>>>>>> Stashed changes
