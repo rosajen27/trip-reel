@@ -1,3 +1,4 @@
+
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
     event.preventDefault();
