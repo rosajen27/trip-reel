@@ -29,8 +29,8 @@ $.ajax(settings).done(function (response) {
         Providers.attr("src", ProvidersArray[i].icon)
 
         
-        Providers.append(URLink)
-        ProviderList.append(Providers);
+        URLink.append(Providers)
+        ProviderList.append(URLink);
         WheretoWatchList.append(ProviderList)
 
     }

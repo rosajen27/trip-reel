@@ -2,6 +2,10 @@ var OMDB = "https://www.omdbapi.com/?t=";
 var OMDBkey = "&apikey=f9d78f5a";
 var movieObj;
 
+//Clean this up, very redundant and can be made one var and one function
+//i.e. [ ["comedyCC",["City Lights", "Airplane", "Some Like it Hot", "The Hustle", "The Lovebirds", "Good Boys"]],
+//       ["actionCC",["Taken", "Robocop", "The Avengers"]],
+//  etc... ]
 var action = ["Taken", "Robocop", "The Avengers", "Bloodshot", "Black Panther", "Jumanji", "Mad Max", "Dunkirk", "Mission Impossible", "Logan"];
 var comedy = ["City Lights", "Airplane", "Some Like it Hot", "The Hustle", "The Lovebirds", "Good Boys", "Onward", "Murder Mystery", "Trolls", "Booksmart"]; 
 var horror = ["The Grudge", "The Blair Witch Project", "Hereditary", "IT", "Drag Me to Hell", "Final Destination", "Midsommar", "Ma", "The Lodge", "The Silence" ];
