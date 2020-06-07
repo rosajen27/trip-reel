@@ -31,6 +31,6 @@ $.ajax(settings).done(function (response) {
         URLink.append(Providers)
         WheretoWatchDiv.append(URLink)
 
-        $("#streaming").prepend(WheretoWatchDiv)
+        $("#streaming").append(WheretoWatchDiv)
     }
 });

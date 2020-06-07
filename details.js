@@ -3,23 +3,19 @@ var OMDBkey = "&apikey=f9d78f5a";
 var movieObj;
 function formatMovie(obj) {
     form = {
-        title: obj[0].title.title,
-        runtime: obj[0].title.runningTimeInMinutes,
-        release: obj[1].Released,
-        genres: obj[0].genres,
-        plotOutline: obj[0].plotOutline.text,
-        plotSummary: obj[0].plotSummary.text,
-        rating: obj[0].certificates.US[0].certificate,
-        ratingR: obj[0].certificates.US[0].ratingReason,
-        reviewRate: obj[0].ratings.rating,
-        metascore: obj[1].Metascore,
-        poster: obj[0].title.image.url,
-        actors: obj[1].Actors,
-        writer: obj[1].Writer,
-        awards: obj[1].Awards,
-        director: obj[1].Director,
-        languages: obj[1].Language,
-        type: obj[1].Type,
+        Title: obj[0].title.title,
+        Runtime: obj[0].title.runningTimeInMinutes,
+        Released: obj[1].Released,
+        Genre: obj[0].genres,
+        Summary: obj[0].plotSummary.text,
+        Rating: obj[0].certificates.US[0].ratingReason,
+        Metascore: obj[1].Metascore,
+        Actors: obj[1].Actors,
+        Writers: obj[1].Writer,
+        Awards: obj[1].Awards,
+        Director: obj[1].Director,
+        Languages: obj[1].Language,
+        Poster: obj[1].Poster,
 
     }
     return form;
@@ -84,12 +80,12 @@ makeMovObj(movie).then(function (result) {
     movieObj = result
 }).then(function(){
 
-    $(".headerPic").attr("src", movieObj.poster);
+    $(".headerPic").attr("src", movieObj.Poster);
 
     var a = $(".cell");
     a.empty();
     Object.keys(movieObj).forEach(function (key){
-        a.append("<h1>"+key+"</h1><br><h4>"+movieObj[key]+"</h4>");
+        a.append("<h4>"+key+"</h4><h5>"+movieObj[key]+"</h5><br>");
         
     });
 });
