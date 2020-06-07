@@ -17,10 +17,10 @@ $.ajax(settings).done(function (response) {
 
     ProvidersArray = UtellyObj.results[0].locations
 
+    var WheretoWatchList = $("<ul>");
     for (var i = 0; i < ProvidersArray.length; i++) {
 
-        var WheretoWatchDiv = $("<div>");
-
+        var ProviderList = $("<li>");
         var Providers = $("<img>");
 
         var URLink = $('<a>')
@@ -28,9 +28,12 @@ $.ajax(settings).done(function (response) {
         URLink.attr("href", ProvidersArray[i].url)
         Providers.attr("src", ProvidersArray[i].icon)
 
-        URLink.append(Providers)
-        WheretoWatchDiv.append(URLink)
+        
+        Providers.append(URLink)
+        ProviderList.append(Providers);
+        WheretoWatchList.append(ProviderList)
 
-        $("#streaming").prepend(WheretoWatchDiv)
     }
+    $("#streaming").append(WheretoWatchList)
+  
 });

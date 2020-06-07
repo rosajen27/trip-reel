@@ -84,7 +84,10 @@ makeMovObj(movie).then(function (result) {
     movieObj = result
 }).then(function(){
 
-    $(".headerPic").attr("src", movieObj.poster);
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("main").style.visibility = "visible";
+    $(".headerPic").attr("style", "visibility:visible");
+    $(".headerPic").attr("src", movieObj.Poster);
 
     var a = $(".cell");
     a.empty();
