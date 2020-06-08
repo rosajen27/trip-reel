@@ -1,3 +1,4 @@
+
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
     event.preventDefault();
@@ -6,7 +7,7 @@ $("#search-button").on("click", function (event) {
     var movie = $("#search-input").val();
 
     // hit the queryURL with $ajax, response will return an array with movies matching searched title
-    var queryURL = "http://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
+    var queryURL = "https://www.omdbapi.com/?s=" + movie + "&apikey=3814d304"
 
     $.ajax({
         url: queryURL,
@@ -26,7 +27,7 @@ $("#search-button").on("click", function (event) {
             console.log(movieID);
 
             // Second API
-            var queryURL2 = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
+            var queryURL2 = "https://www.omdbapi.com/?i=" + movieID + "&apikey=3814d304"
             $.ajax({
                 url: queryURL2,
                 method: "GET",
@@ -34,7 +35,8 @@ $("#search-button").on("click", function (event) {
                     console.log(data);
 
                     $("#movie-list").append("<div id='"+data.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')+"'> <img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr></div>");
-
+                    $('.resultImg').css('cursor', 'pointer');
+                    $('h4').css('cursor', 'pointer');
                 }
             });
 
@@ -42,7 +44,7 @@ $("#search-button").on("click", function (event) {
 
     });
 });
-$(document).on("click", ".resultImg", function(){
+$(document).on("click", ".resultImg, h4", function(){
     window.location.href = 'details.html?' + $(this).parent().attr("id") ;
     console.log($(this).parent().attr("id"))
 });
