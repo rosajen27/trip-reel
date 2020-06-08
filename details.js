@@ -15,7 +15,7 @@ function formatMovie(obj) {
         Awards: obj[1].Awards,
         Director: obj[1].Director,
         Languages: obj[1].Language,
-        Poster: obj[1].Poster,
+        Poster: obj[0].title.image.url,
 
     }
     return form;
@@ -40,7 +40,7 @@ function getIMDbObj(movie) {
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                    "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
+                    "x-rapidapi-key": "f2b30e5b86mshef9af991c5736d4p10c126jsn146e977a47d1"
                 }
             }
             $.ajax(settings).then(function (response) {
