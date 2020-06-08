@@ -23,3 +23,10 @@ $("#rating").append(movieRating);
 $("#metascore").append(movieMetascore);
 $("#genre").append(movieGenre);
 $("#plot").append(moviePlot);
+
+var movie = decodeURI(window.location.search.substring(1));
+$(document).on("click", ".resultImg", function(){
+    window.location.href = 'https://jakesifo.github.io/Project_1/details.html?' + $(this).parent().attr("id") ;
+    console.log($(this).parent().attr("id"))
+
+});
