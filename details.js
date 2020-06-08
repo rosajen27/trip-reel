@@ -40,7 +40,7 @@ function getIMDbObj(movie) {
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                    "x-rapidapi-key": "38519610ffmsh90a3c30c45c5dbbp178690jsn61a4c17f6c68"
+                    "x-rapidapi-key": "f2b30e5b86mshef9af991c5736d4p10c126jsn146e977a47d1"
                 }
             }
             $.ajax(settings).then(function (response) {
@@ -87,9 +87,13 @@ makeMovObj(movie).then(function (result) {
 
     var a = $(".cell");
     a.empty();
-    Object.keys(movieObj).forEach(function (key){
-        a.append("<h4>"+key+"</h4><h5>"+movieObj[key]+"</h5><br>");
+    a.append("<h1>"+movieObj.Title+"</h1>");
+    a.append("<h4>"+movieObj.Runtime+" mins</h4>");
+    a.append("<h4>Released: "+movieObj.Released+"</h4>");
+    a.append("<p>Metascore: "+movieObj.Metascore+"/100</p>");
+    a.append("<h4>"+movieObj.Rating+"</h4>");
+    a.append("<p>"+movieObj.Summary+"</p>");
         
-    });
-});
+    }); 
+
 
