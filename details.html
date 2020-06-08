@@ -10,43 +10,116 @@
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="foundation-6.6.3-complete/css/foundation.css">
 
+    <style>
+        li {
+            display: inline;
+            list-style-type: none;
+            padding-right: 20px;
+            margin: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        ul {
+            text-align: -webkit-center;
+        }
+
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
+    </style>
 </head>
 <a class="backNav" href="index.html"><img class="backArrow" src="assets/BackArrow.png">Back to Search</a>
 <a class="logo" href="index.html">
     <img src="Assets/TripReelLogo.png">
 </a>
 <div>
-    <img class="headerPic"
-        src="https://bloximages.chicago2.vip.townnews.com/newsbug.info/content/tncms/assets/v3/editorial/a/88/a88952cf-ccec-55f9-a6b3-53fcd8d6dd86/5e793b7686f0c.image.jpg">
+    <img class="headerPic" style="visibility:hidden">
 </div>
 
 <body>
 
-    <div class="text" class="grid-x grid-margin-x">
+    <div id="loader"></div>
+    <div id="main" class="text" class="grid-x grid-margin-x" style="visibility:hidden">
         <div class="cell medium-6 large-4">
-            <!-- Title -->
-            <h1>Bloodshot</h1>
-            <!-- Release Date -->
-            <h4>March 13 2020</h4>
-            <!-- Rating  -->
-            <h4>PG13</h4>
-            <!-- Score -->
-            <h4>44/100 Metascore</h4>
-            <!-- Source -->
-            <h4>from: Metacritic Score</h4>
-            <!-- Bio -->
-            <p>Ray Garrison, an elite soldier who was killed in battle, is brought back to life by an advanced
-                technology that gives him the ability of super human strength and fast healing.
-                With his new abilities, he goes after the man who killed his wife, or at least, who he believes killed
-                his wife. He soon comes to learn that not everything he learns can be trusted. The true question is: Can
-                he even trust himself?</p>
-            <!-- Streaming available -->
-        </div>
-            <div id="streaming">
-                <h4>Where to Watch?</h4>
-            </div>
-    </div>
 
+            
+        </div>
+        <div id="streaming">
+            <h4>Where to Watch?</h4>
+            <hr>
+        </div>
+        <hr>
+
+    </div>
 
 
     <!-- jQuery must be imported before Foundation -->
