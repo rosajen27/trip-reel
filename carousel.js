@@ -37,7 +37,24 @@ function getIMDB(title) {
         sortGenre(movieObj);
     });
 }
+function make(){
+    var genreMovieArray = JSON.parse(window.localStorage.getItem("genreMovieArray"));
 
+    for (const [g, ms] of Object.entries(genreMovieArray)) {
+        if (ms.length >= 4) {
+            console.log(g)
+            var genrID = g.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
+
+            $("#genres").append("<h4>" + g + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + genrID + "'" + ` data-flickity='{ "wrapAround": true }'></div><hr>`);
+            ms.forEach(function (mObj) {
+                console.log(mObj)
+                $("#" + genrID).append("<div class='carousel-cell' style='background-image: url(" + mObj.Poster + ");' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
+
+            })
+        }
+
+    }
+}
 var genreMovieArray = {};
 function sortGenre(movieObj) {
 
@@ -63,57 +80,10 @@ if (window.localStorage.getItem("genreMovieArray") === null) {
 
     }
     function doWork() {
-        console.log(genreMovieArray);
-        console.log(genreMovieArray.Action[5].Actors);
         window.localStorage.setItem("genreMovieArray", JSON.stringify(genreMovieArray));
-        console.log(`Set: ${JSON.stringify(genreMovieArray)}`);
+        make();
     }
     getWork(doWork);
 
-} else {
-    var genreMovieArray = JSON.parse(window.localStorage.getItem("genreMovieArray"));
-
-    console.log(`Get: ${JSON.stringify(genreMovieArray)}`);
-    for (const [g, ms] of Object.entries(genreMovieArray)) {
-        if (ms.length >= 4) {
-            console.log(g)
-            var genrID = g.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
-
-            $("#genres").append("<h4>" + g + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + genrID + "'" + ` data-flickity='{ "wrapAround": true }'></div><hr>`);
-            ms.forEach(function (mObj) {
-                console.log(mObj)
-                $("#" + genrID).append("<div class='carousel-cell' style='background-image: url(" + mObj.Poster + ");' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
-
-            })
-        }
-
-    }
-    // for (const [g, ms] of Object.entries(genreMovieArray)) {
-    //     console.log(g)
-    //     var genrID = g.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
-
-    //     $("#genres").append("<h4>" + g + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + genrID + "'" + ` data-flickity='{ "wrapAround": true }'></div><hr>`);
-    //     ms.forEach(function (mObj) {
-    //         console.log(mObj)
-    //         $("#" + genrID + " > div > div").append("<div class='carousel-cell' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
-    //         var element = document.querySelector("#" +genrID+ " > div > div");
-
-    //         var element2 = $("#" +genrID+ " > div > div");
-
-    //         console.log(element2)
-    //         element2.append("<div class='carousel-cell' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>")
-
-    //         console.log("#" +genrID+ " > div > div")
-    //         console.log(element)
-    //         console.log(element2)
-    //     })
-
-    // }
-}
-
-
-
-// $("#" + myGenre.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')).append(`<div class="carousel-cell" id="${movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')}></div>`);
-
-// $("#genres").append("<h4>" + myGenre + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + myGenre.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'" + ` data-flickity='{ "wrapAround": true }'>` + " <div class='carousel-cell' id='" + movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div></div><hr>");
+} else {make();}
 
