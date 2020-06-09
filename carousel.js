@@ -67,7 +67,7 @@ function sortGenre(movieObj) {
             //This movies genre's div does not exists
             genreMovieArray[myGenre] = [movieObj];
 
-            $("#genres").append("<h4>" + myGenre + "</h4><hr><div class='carousel' id='" + myGenre.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "' data-flickity='{ 'wrapAround': true }'> <div class='carousel-cell' id='" + movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div></div><hr>");
+            $("#genres").append("<h4>" + myGenre + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + myGenre.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'" +` data-flickity='{ "wrapAround": true }'>` + " <div class='carousel-cell' id='" + movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div></div><hr>");
 
 
         }
