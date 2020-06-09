@@ -73,4 +73,7 @@ function sortGenre(movieObj) {
         }
     }
 }
+
+
+
 best.forEach(getIMDB);
