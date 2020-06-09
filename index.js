@@ -2,6 +2,8 @@
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
     event.preventDefault();
+    event.stopImmediatePropagation();
+    $("#movie-list").empty();
 
     // grab text from the search-input box
     var movie = $("#search-input").val();
@@ -13,8 +15,6 @@ $("#search-button").on("click", function (event) {
         url: queryURL,
         method: "GET",
     }).then(function (response) {
-
-        $("#carouselDiv").hide();
 
         // Store the data from the AJAX request
         let results = response.Search;
