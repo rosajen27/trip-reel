@@ -92,4 +92,3 @@ makeMovObj(movie).then(function (result) {
     a.append("<h4>"+movieObj.Rating+"</h4>");
     a.append("<p>"+movieObj.Summary+"</p>");
 });
-
