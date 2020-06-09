@@ -8,7 +8,13 @@
 .carousel1 {
     background: transparent;
 }
-
+.myLogo{
+    position: absolute;
+    width: 30%;
+    top: 28px;
+    right: 35px;
+    color: white;
+}
 .flickity-prev-next-button.previous {
     left: 10px;
     background-color: transparent;

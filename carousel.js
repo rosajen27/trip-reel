@@ -33,13 +33,10 @@ function getIMDB(title) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-
         movieObj = response;
-        var movieID = "#" + movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
         sortGenre(movieObj);
     });
 }
-
 
 var genreMovieArray = {};
 function sortGenre(movieObj) {
