@@ -44,7 +44,12 @@ $("#search-button").on("click", function (event) {
 
     });
 });
+
 $(document).on("click", ".resultImg, h4", function(){
     window.location.href = 'details.html?' + $(this).parent().attr("id") ;
     console.log($(this).parent().attr("id"))
+});
+$(document).on("click", ".carousel-cell", function(){
+    window.location.href = 'details.html?' + $(this).attr("id") ;
+    console.log($(this).attr("id"))
 });

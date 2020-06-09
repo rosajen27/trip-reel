@@ -1,5 +1,5 @@
-var OMDB = "https://www.omdbapi.com/?t=";
-var OMDBkey = "&apikey=f9d78f5a";
+var OMDB = "https://www.omdbapi.com/?type=movie&t=";
+var OMDBkey = "&apikey=59d81f88";
 var movieObj;
 function formatMovie(obj) {
     form = {
@@ -23,8 +23,6 @@ function formatMovie(obj) {
 }
 
 function getIMDbObj(movie) {
-    var OMDB = "https://www.omdbapi.com/?t=";
-    var OMDBkey = "&apikey=f9d78f5a";
     var queryURL = OMDB + movie + OMDBkey;
     var omdbInf;
     var promise = new Promise(function (resolve, reject) {
@@ -36,7 +34,7 @@ function getIMDbObj(movie) {
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst=" + response.imdbID,
+                "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?type=movie&currentCountry=US&tconst=" + response.imdbID,
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-host": "imdb8.p.rapidapi.com",
