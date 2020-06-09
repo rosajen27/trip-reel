@@ -1,21 +1,21 @@
 # Project 1: Trip Reel
-
-Deployed Website: (insert URL here)
+A mobile movie app that will run in the browser and feature dynamically updated HTML, CSS, and JavaScript with data from Omdb and Utelly API.
 
 ## Criteria
 ```
-As a mobile user I want to find information about a movie. 
-So that I can find out whether the movie is rated well, where I can stream the movie, and related moviess all in one place.
+As a mobile user I want to find information about a movie,
+So that I can find out whether the movie is rated well, where I can stream the movie, and other movie information all in one place.
 ```
 
 ## Movie Search Web Form
 Search for a Movie & Return:
 - Title - Omdb API
 - Poster - Omdb API
-- Quotes - MovieQuotesAPI
+- Runtime - Omdb API
 - Plot - Omdb API
-- Reviews - Omdb API
+- Metascore - Omdb API
 - Where to watch - Utelly API
-- Similar movies based on genre - Omdb API
 
-The following image demonstrates the application functionality: (insert image of index.html)
+The following image demonstrates the application functionality: 
+
+![movie app demo](TripReelGIF.gif)
