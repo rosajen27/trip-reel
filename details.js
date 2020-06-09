@@ -85,9 +85,11 @@ makeMovObj(movie).then(function (result) {
 
     var a = $(".cell");
     a.empty();
-    Object.keys(movieObj).forEach(function (key){
-        a.append("<h4>"+key+"</h4><h5>"+movieObj[key]+"</h5><br>");
-        
-    });
+    a.append("<h1>"+movieObj.Title+"</h1>");
+    a.append("<h4>"+movieObj.Runtime+" mins</h4>");
+    a.append("<h4>Released: "+movieObj.Released+"</h4>");
+    a.append("<p>Metascore: "+movieObj.Metascore+"/100</p>");
+    a.append("<h4>"+movieObj.Rating+"</h4>");
+    a.append("<p>"+movieObj.Summary+"</p>");
 });
 
