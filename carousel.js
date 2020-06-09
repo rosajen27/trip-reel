@@ -1,62 +1,119 @@
 var OMDB = "https://www.omdbapi.com/?t=";
-var OMDBkey = "&apikey=f9d78f5a";
-var movieObj;
+var OMDBkey = "&apikey=59d81f88";
 
-//Clean this up, very redundant and can be made one var and one function
-//i.e. [ ["comedyCC",["City Lights", "Airplane", "Some Like it Hot", "The Hustle", "The Lovebirds", "Good Boys"]],
-//       ["actionCC",["Taken", "Robocop", "The Avengers"]],
-//  etc... ]
-var action = ["Taken", "Robocop", "The Avengers", "Bloodshot", "Black Panther", "Jumanji", "Mad Max", "Dunkirk", "Mission Impossible", "Logan"];
-var comedy = ["City Lights", "Airplane", "Some Like it Hot", "The Hustle", "The Lovebirds", "Good Boys", "Onward", "Murder Mystery", "Trolls", "Booksmart"]; 
-var horror = ["The Grudge", "The Blair Witch Project", "Hereditary", "IT", "Drag Me to Hell", "Final Destination", "Midsommar", "Ma", "The Lodge", "The Silence" ];
-action.forEach(getIMDBaction);
-comedy.forEach(getIMDBcomedy);
-horror.forEach(getIMDBhorror);
+var best = ["The Treasure of the Sierra Madre", "Stagecoach", "The Searchers", "Once Upon a Time in the West", "Us", "The Babadook", "Nosferatu, a Symphony of Horror", "Halloween", "It", "Drag me to Hell", "Midsommar", "Carrie", "Invasion of the Body Snatchers", "Won't You Be My Neighbor?", "I Am Not Your Negro", "Weiner", "Free Solo", "Three Identical Strangers", "Nightcrawler", "Ex Machina", "10 Cloverfield Lane", " Kiss Me Deadly", "The Big Heat", "Laura", "The Shawshank Redemption", "The Godfather", "The Silence of the Lambs", "Pulp Fiction", "Titanic", "Jurassic Park", "Forrest Gump", "The Lord of the Rings: The Return of the King", "The Green Mile", "Saving Private Ryan", "Jaws", "Goodfellas", "Schindler's List", "Gladiator", "Raiders of the Lost Ark", "Some Like It Hot", "The Good the Bad and the Ugly", "Taxi Driver", "Apocalypse Now", "A Clockwork Orange", "The Godfather: Part II", "Star Wars: Episode IV - A New Hope", "Unforgiven", "Psycho", "Good Will Hunting", "2001: A Space Odyssey", "12 Angry Men", "One Flew Over the Cuckoo's Nest", "Braveheart", "E.T.the Extra - Terrestrial", "The Pianist", "The Exorcist", "Vertigo", "Fargo", "The Sound of Music", "Gone with the Wind", "Platoon", "The Wizard of Oz", "Casablanca", "The Deer Hunter", "A Streetcar Named Desire", "American Graffiti", "Rocky", "From Here to Eternity", "Citizen Kane", "Amadeus", "Rear Window", "North by Northwest", "West Side Story", "Chinatown", "Dr.Strangelove or: How I Learned to Stop Worrying and Love the Bomb", "Lawrence of Arabia", "Close Encounters of the Third Kind", "To Kill a Mockingbird", "Dances with Wolves", "Raging Bull", "Singin' in the Rain", "It's a Wonderful Life", "The French Connection", "Rain Man", "Annie Hall", "Midnight Cowboy", "Ben-Hur", "Network", "Sunset Blvd.", "Terms of Endearment", "Butch Cassidy and the Sundance Kid", "Bonnie and Clyde", "The Apartment", "The Great Dictator", "On the Waterfront", "Rebel Without a Cause", "The Searchers", "The Bridge on the River Kwai", "My Fair Lady", "Shane", "The Third Man", "Doctor Zhivago", "Double Indemnity", "High Noon", "The Maltese Falcon", "Giant", "The Best Years of Our Lives", "It Happened One Night", "Patton", "City Lights", "The Treasure of the Sierra Madre", "The Philadelphia Story", "All Quiet on the Western Front", "Nashville", "The African Queen", "The Grapes of Wrath", "Mr.Smith Goes to Washington", "An American in Paris", "A Place in the Sun", "Wuthering Heights", "Mutiny on the Bounty", "Yankee Doodle Dandy"]
 
-function getIMDBaction(movie) {
-    var queryURL = OMDB + movie + OMDBkey;
-    return $.ajax({
+// function getRandomInt(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     max += 1;
+//     return Math.floor(Math.random() * (max - min)) + min;
+// }
+// function makeRndID() {
+//     var str = '' + getRandomInt(3000000, 9999999);
+//     while (str.length < 7) {
+//         str = '0' + str;
+//     }
+
+//     return str;
+// }
+// function makeRandMovies(howMany) {
+//     var movieList = [];
+//     for (let i = 0; i < howMany; i++) {
+//         const movieID = "tt" + makeRndID();
+//         movieList.push(movieID);
+//     }
+//     console.log(movieList)
+//     return movieList;
+// }
+
+function getIMDB(title) {
+    var queryURL = OMDB + title + OMDBkey;
+    $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         movieObj = response;
-        var genre = "#actionCC" + action.indexOf(movie);
-        printPoster(movieObj, genre);
+        sortGenre(movieObj);
     });
 }
 
-function getIMDBcomedy(movie) {
-    var queryURL = OMDB + movie + OMDBkey;
-    return $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        movieObj = response;
-        var genre = "#comedyCC" + comedy.indexOf(movie);
-        printPoster(movieObj, genre);
-    });
+var genreMovieArray = {};
+function sortGenre(movieObj) {
+
+    var myGenres = movieObj.Genre.split(", ");
+    var myGenre = myGenres[0];
+
+    if (myGenre.localeCompare("N/A") != 0) {
+        if (myGenre in genreMovieArray) {
+            //This movies genre's div exists
+            genreMovieArray[myGenre].push(movieObj);
+        } else {
+            //This movies genre's div does not exists
+            genreMovieArray[myGenre] = [movieObj];
+        }
+    }
+}
+if (window.localStorage.getItem("genreMovieArray") === null) {
+    function getWork(callback) {
+        best.forEach(getIMDB);
+        setTimeout(function () {
+            callback();;
+        }, 1000);
+
+    }
+    function doWork() {
+        console.log(genreMovieArray);
+        console.log(genreMovieArray.Action[5].Actors);
+        window.localStorage.setItem("genreMovieArray", JSON.stringify(genreMovieArray));
+        console.log(`Set: ${JSON.stringify(genreMovieArray)}`);
+    }
+    getWork(doWork);
+
+} else {
+    var genreMovieArray = JSON.parse(window.localStorage.getItem("genreMovieArray"));
+
+    console.log(`Get: ${JSON.stringify(genreMovieArray)}`);
+    for (const [g, ms] of Object.entries(genreMovieArray)) {
+        if (ms.length >= 4) {
+            console.log(g)
+            var genrID = g.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
+
+            $("#genres").append("<h4>" + g + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + genrID + "'" + ` data-flickity='{ "wrapAround": true }'></div><hr>`);
+            ms.forEach(function (mObj) {
+                console.log(mObj)
+                $("#" + genrID).append("<div class='carousel-cell' style='background-image: url(" + mObj.Poster + ");' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
+
+            })
+        }
+
+    }
+    // for (const [g, ms] of Object.entries(genreMovieArray)) {
+    //     console.log(g)
+    //     var genrID = g.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
+
+    //     $("#genres").append("<h4>" + g + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + genrID + "'" + ` data-flickity='{ "wrapAround": true }'></div><hr>`);
+    //     ms.forEach(function (mObj) {
+    //         console.log(mObj)
+    //         $("#" + genrID + " > div > div").append("<div class='carousel-cell' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
+    //         var element = document.querySelector("#" +genrID+ " > div > div");
+
+    //         var element2 = $("#" +genrID+ " > div > div");
+
+    //         console.log(element2)
+    //         element2.append("<div class='carousel-cell' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>")
+
+    //         console.log("#" +genrID+ " > div > div")
+    //         console.log(element)
+    //         console.log(element2)
+    //     })
+
+    // }
 }
 
 
-function getIMDBhorror(movie) {
-    var queryURL = OMDB + movie + OMDBkey;
-    return $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        movieObj = response;
-        var genre = "#horrorCC" + horror.indexOf(movie);
-        printPoster(movieObj, genre);
-    });
-}
 
+// $("#" + myGenre.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')).append(`<div class="carousel-cell" id="${movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')}></div>`);
 
+// $("#genres").append("<h4>" + myGenre + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + myGenre.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'" + ` data-flickity='{ "wrapAround": true }'>` + " <div class='carousel-cell' id='" + movieObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div></div><hr>");
 
-function printPoster(obj, genre) {
-
-   console.log(obj.Poster);
-   var element = document.querySelector(genre); 
-   console.log(element); 
-   element.style.backgroundImage = "url("+ obj.Poster +")"; 
-
-} 
