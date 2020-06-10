@@ -41,7 +41,7 @@ $.ajax(settings).done(function (response) {
 
         }
     }
-    var youTube = $('<li><a href=https://www.youtube.com/results?search_query="'+window.localStorage.getItem("name")+'" class="utellyB" style="color: indianred; font-weight: lighter">Try YouTube</a></li>')
+    var youTube = $('<li><a href=https://www.youtube.com/results?search_query='+window.localStorage.getItem("name")+' class="utellyB" style="color: indianred; font-weight: lighter">Try YouTube</a></li>')
     WheretoWatchList.append(youTube)
     $("#streaming").append(WheretoWatchList)
 

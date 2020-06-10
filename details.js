@@ -8,7 +8,7 @@ function formatMovie(obj) {
         Released: "N/A",
         Genre: "N/A",
         Summary: "N/A",
-        Rating: "N/A",
+        Rating: "",
         Metascore: "N/A",
         Score: "N/A",
         Actors: "N/A",
@@ -16,7 +16,7 @@ function formatMovie(obj) {
         Awards: "N/A",
         Director: "N/A",
         Languages: "N/A",
-        Poster: "N/A",
+        Poster: "https://static-vectorplace-com.ams3.digitaloceanspaces.com/uploads/works/72680/preview_72680.jpg",
 
     }
     try{form.Title = obj[0].title.title} catch(error){}
