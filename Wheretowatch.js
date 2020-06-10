@@ -24,7 +24,7 @@ $.ajax(settings).done(function (response) {
             var ProviderList = $("<li>");
             var Providers = $("<img>");
 
-            var URLink = $('<a>')
+            var URLink = $('<a class="utellyB">')
 
             URLink.attr("href", ProvidersArray[i].url)
             Providers.attr("src", ProvidersArray[i].icon)
