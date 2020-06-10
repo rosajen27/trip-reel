@@ -48,7 +48,7 @@ function make(){
             $("#genres").append("<h4>" + g + "</h4><hr><div class='carousel flickity-enabled is-draggable' id='" + genrID + "'" + ` data-flickity='{ "wrapAround": true }'></div><hr>`);
             ms.forEach(function (mObj) {
                 console.log(mObj)
-                $("#" + genrID).append("<div class='carousel-cell' style='background-image: url(" + mObj.Poster + ");' id='" + mObj.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
+                $("#" + genrID).append("<div class='carousel-cell' style='background-image: url(" + mObj.Poster + ");' id='" + mObj.imdbID.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '') + "'></div>");
 
             })
         }

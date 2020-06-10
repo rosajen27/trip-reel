@@ -1,24 +1,24 @@
-var movie = decodeURI(window.location.search.substring(1));
+var movieID = decodeURI(window.location.search.substring(1));
 var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=" + movie + "&country=us",
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-        "x-rapidapi-key": "b1775e8ec7msh788e5c7c96cfc8fp1af385jsnc2d02c379eb2"
-    }
+	"async": true,
+	"crossDomain": true,
+	"url": "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?source_id="+movieID+"&source=imdb",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+		"x-rapidapi-key": "b1775e8ec7msh788e5c7c96cfc8fp1af385jsnc2d02c379eb2"
+	}
 }
 
 $.ajax(settings).done(function (response) {
     console.log(response);
 
     var UtellyObj = response
-
-    ProvidersArray = UtellyObj.results[0].locations
+console.log(UtellyObj.collection.locations)
+    ProvidersArray = UtellyObj.collection.locations;
 
     var WheretoWatchList = $("<ul>");
-    for (var i = 0; i < ProvidersArray.length; i++) {
+    for (var i = 0; i < 6; i++) {
 
         var ProviderList = $("<li>");
         var Providers = $("<img>");
