@@ -97,6 +97,6 @@ makeMovObj(movieID).then(function (result) {
     a.append("<h4>Released: " + movieObj.Released + "</h4>");
     a.append("<p>Metascore: " + movieObj.Metascore + "</p>");
     a.append("<p>IMDB rating: " + movieObj.Score + "</p>");
-    a.append("<h4>" + movieObj.Rating + "</h4>");
+    if (movieObj.Rating) {a.append("<h4 style='color: rgb(224, 53, 53)'>" + movieObj.Rating + "</h4>");}
     a.append("<p>" + movieObj.Summary + "</p>");
 });
