@@ -1,4 +1,3 @@
-
 // This .on("click") function will trigger the AJAX Call
 $("#search-button").on("click", function (event) {
     event.preventDefault();
@@ -9,7 +8,7 @@ $("#search-button").on("click", function (event) {
     var movie = $("#search-input").val();
 
     // hit the queryURL with $ajax, response will return an array with movies matching searched title
-    var queryURL = "https://www.omdbapi.com/?s=" + movie + "&apikey=f9d78f5a"
+    var queryURL = "https://www.omdbapi.com/?s=" + movie + "&type=movie&apikey=f9d78f5a"
 
     $.ajax({
         url: queryURL,
@@ -34,7 +33,8 @@ $("#search-button").on("click", function (event) {
                 success: function (data) {
                     console.log(data);
 
-                    $("#movie-list").append("<div id='"+data.imdbID.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')+"'> <img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr></div>");
+                    $("#movie-list").append("<div name=" + encodeURI(data.Title.replace(" ", "+")) + " id='"+data.imdbID.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')+"'> <img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr></div>");
+                    name = data.Title;
                     $('.resultImg').css('cursor', 'pointer');
                     $('h4').css('cursor', 'pointer');
                 }
@@ -46,10 +46,12 @@ $("#search-button").on("click", function (event) {
 });
 
 $(document).on("click", ".resultImg, h4", function(){
+    window.localStorage.setItem("name", $(this).parent().attr("name"));
     window.location.href = 'details.html?' + $(this).parent().attr("id") ;
     console.log($(this).parent().attr("id"))
 });
 $(document).on("click", ".carousel-cell", function(){
+    window.localStorage.setItem("name", $(this).attr("name"));
     window.location.href = 'details.html?' + $(this).attr("id") ;
     console.log($(this).attr("id"))
 });
