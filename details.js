@@ -3,22 +3,37 @@ var OMDBkey = "&apikey=59d81f88";
 var movieObj;
 function formatMovie(obj) {
     form = {
-        Title: obj[0].title.title,
-        Runtime: obj[0].title.runningTimeInMinutes,
-        Released: obj[1].Released,
-        Genre: obj[0].genres,
-        Summary: obj[0].plotSummary.text,
-        Rating: obj[0].certificates.US[0].ratingReason,
-        Metascore: obj[1].Metascore,
-        Score: obj[1].imdbRating,
-        Actors: obj[1].Actors,
-        Writers: obj[1].Writer,
-        Awards: obj[1].Awards,
-        Director: obj[1].Director,
-        Languages: obj[1].Language,
-        Poster: obj[0].title.image.url,
+        Title: "N/A",
+        Runtime: "N/A",
+        Released: "N/A",
+        Genre: "N/A",
+        Summary: "N/A",
+        Rating: "N/A",
+        Metascore: "N/A",
+        Score: "N/A",
+        Actors: "N/A",
+        Writers: "N/A",
+        Awards: "N/A",
+        Director: "N/A",
+        Languages: "N/A",
+        Poster: "N/A",
 
     }
+    try{form.Title = obj[0].title.title} catch(error){}
+    try{form.Runtime = obj[0].title.runningTimeInMinutes} catch(error){}
+    try{form.Released = obj[1].Released} catch(error){}
+    try{form.Genre = obj[0].genres} catch(error){}
+    try{form.Summary = obj[0].plotSummary.text} catch(error){}
+    try{form.Rating = obj[0].certificates.US[0].ratingReason} catch(error){}
+    try{form.Metascore = obj[1].Metascore} catch(error){}
+    try{form.Score = obj[1].imdbRating} catch(error){}
+    try{form.Actors = obj[1].Actors} catch(error){}
+    try{form.Writers = obj[1].Writer} catch(error){}
+    try{form.Awards = obj[1].Awards} catch(error){}
+    try{form.Director = obj[1].Director} catch(error){}
+    try{form.Languages = obj[1].Language} catch(error){}
+    try{form.Poster = obj[0].title.image.url} catch(error){}
+
     return form;
 
 }
@@ -92,7 +107,7 @@ makeMovObj(movieID).then(function (result) {
 
     var a = $(".cell");
     a.empty();
-    a.append("<h1>" + movieObj.Title + "</h1>");
+    a.append("<h1 id='title'>" + movieObj.Title + "</h1>");
     a.append("<h4>" + movieObj.Runtime + " mins</h4>");
     a.append("<h4>Released: " + movieObj.Released + "</h4>");
     a.append("<p>Metascore: " + movieObj.Metascore + "</p>");

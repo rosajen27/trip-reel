@@ -19,23 +19,30 @@ $.ajax(settings).done(function (response) {
 
 
     var WheretoWatchList = $("<ul>");
-    for (var i = 0; i < ProvidersArray.length; i++) {
-        if ((ProvidersArray[i].country[0] === 'us') && !(ProvidersArray[i].display_name.includes("IVAUS"))) {
-            var ProviderList = $("<li>");
-            var Providers = $("<img class='brightness'>");
+    if (ProvidersArray.length === 0) { 
+        var nullProviders = $('<li><a style="font-size: 70%; color: darkslategray; font-weight: bolder" class="utellyB">Not Available On Streaming Platforms</a></li>')
+        WheretoWatchList.append(nullProviders)
+    } else {
+        for (var i = 0; i < ProvidersArray.length; i++) {
+            if ((ProvidersArray[i].country[0] === 'us') && !(ProvidersArray[i].display_name.includes("IVAUS"))) {
+                var ProviderList = $("<li>");
+                var Providers = $("<img class='brightness'>");
 
-            var URLink = $('<a class="utellyB">')
+                var URLink = $('<a class="utellyB">')
 
-            URLink.attr("href", ProvidersArray[i].url)
-            Providers.attr("src", ProvidersArray[i].icon)
+                URLink.attr("href", ProvidersArray[i].url)
+                Providers.attr("src", ProvidersArray[i].icon)
 
 
-            URLink.append(Providers)
-            ProviderList.append(URLink);
-            WheretoWatchList.append(ProviderList)
+                URLink.append(Providers)
+                ProviderList.append(URLink);
+                WheretoWatchList.append(ProviderList)
+            }
+
         }
-
     }
+    var youTube = $('<li><a href=https://www.youtube.com/results?search_query="'+window.localStorage.getItem("name")+'" class="utellyB" style="color: indianred; font-weight: lighter">Try YouTube</a></li>')
+    WheretoWatchList.append(youTube)
     $("#streaming").append(WheretoWatchList)
 
 });
