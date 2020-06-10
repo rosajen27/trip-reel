@@ -22,7 +22,7 @@ $.ajax(settings).done(function (response) {
     for (var i = 0; i < ProvidersArray.length; i++) {
         if ((ProvidersArray[i].country[0] === 'us') && !(ProvidersArray[i].display_name.includes("IVAUS"))) {
             var ProviderList = $("<li>");
-            var Providers = $("<img>");
+            var Providers = $("<img class='brightness'>");
 
             var URLink = $('<a class="utellyB">')
 
