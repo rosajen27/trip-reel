@@ -38,7 +38,8 @@ function getIMDbObj(movie) {
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                    "x-rapidapi-key": "f2b30e5b86mshef9af991c5736d4p10c126jsn146e977a47d1"
+                    "x-rapidapi-key": "589e187235msh5cb24a4e77b36c6p14ee08jsn91afa1923984"
+                    
                 }
             }
             $.ajax(settings).then(function (response) {
