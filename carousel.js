@@ -81,6 +81,7 @@ if (window.localStorage.getItem("genreMovieArray") === null) {
     }
     function doWork() {
         window.localStorage.setItem("genreMovieArray", JSON.stringify(genreMovieArray));
+        location.reload();
         make();
     }
     getWork(doWork);
