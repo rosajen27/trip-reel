@@ -34,7 +34,7 @@ $("#search-button").on("click", function (event) {
                 success: function (data) {
                     console.log(data);
 
-                    $("#movie-list").append("<div id='"+data.Title.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')+"'> <img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr></div>");
+                    $("#movie-list").append("<div id='"+data.imdbID.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '')+"'> <img class='resultImg' src='" + data.Poster + "'>" + "<h4>" + data.Title + "</h4>" + data.Released + "<br> Rated: " + data.Rated + "<br>" + data.Metascore + "/100 Metascore <br>" + "Genre: " + data.Genre + "<hr></div>");
                     $('.resultImg').css('cursor', 'pointer');
                     $('h4').css('cursor', 'pointer');
                 }

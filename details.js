@@ -10,6 +10,7 @@ function formatMovie(obj) {
         Summary: obj[0].plotSummary.text,
         Rating: obj[0].certificates.US[0].ratingReason,
         Metascore: obj[1].Metascore,
+        Score: obj[1].imdbRating,
         Actors: obj[1].Actors,
         Writers: obj[1].Writer,
         Awards: obj[1].Awards,
@@ -22,39 +23,44 @@ function formatMovie(obj) {
 
 }
 
-function getIMDbObj(movie) {
-    var queryURL = OMDB + movie + OMDBkey;
+function getIMDbObj(movieID) {
     var omdbInf;
     var promise = new Promise(function (resolve, reject) {
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            omdbInf = response;
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?type=movie&currentCountry=US&tconst=" + response.imdbID,
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                    "x-rapidapi-key": "589e187235msh5cb24a4e77b36c6p14ee08jsn91afa1923984"
-                    
-                }
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://imdb8.p.rapidapi.com/title/get-overview-details?type=movie&currentCountry=US&tconst=" + movieID,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                "x-rapidapi-key": "f2b30e5b86mshef9af991c5736d4p10c126jsn146e977a47d1"
             }
-            $.ajax(settings).then(function (response) {
-                resolve([response, omdbInf]);
+        }
+        $.ajax(settings).then(function (response) {
+
+            var queryURL = OMDB + response.Title + OMDBkey;
+            omdbInf = response;
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(omdbInf)
+                console.log(response)
+                resolve([omdbInf, response]);
             });
+
         });
     });
     return promise;
+
 }
 
 //Use this to get an object filled with movie info
-function makeMovObj(movie) {
+function makeMovObj(movieID) {
 
     var promise = new Promise(function (resolve, reject) {
-        getIMDbObj(movie).then(function (i) {
+        getIMDbObj(movieID).then(function (i) {
             console.dir(i);
             resolve(formatMovie(i));
         });
@@ -72,12 +78,12 @@ function makeMovObj(movie) {
 //     });
 // }
 
-var movie = decodeURI(window.location.search.substring(1));
+var movieID = decodeURI(window.location.search.substring(1));
 var movieObj;
-makeMovObj(movie).then(function (result) {
+makeMovObj(movieID).then(function (result) {
     console.dir(result);
     movieObj = result
-}).then(function(){
+}).then(function () {
 
     document.getElementById("loader").style.display = "none";
     document.getElementById("main").style.visibility = "visible";
@@ -86,10 +92,11 @@ makeMovObj(movie).then(function (result) {
 
     var a = $(".cell");
     a.empty();
-    a.append("<h1>"+movieObj.Title+"</h1>");
-    a.append("<h4>"+movieObj.Runtime+" mins</h4>");
-    a.append("<h4>Released: "+movieObj.Released+"</h4>");
-    a.append("<p>Metascore: "+movieObj.Metascore+"/100</p>");
-    a.append("<h4>"+movieObj.Rating+"</h4>");
-    a.append("<p>"+movieObj.Summary+"</p>");
+    a.append("<h1>" + movieObj.Title + "</h1>");
+    a.append("<h4>" + movieObj.Runtime + " mins</h4>");
+    a.append("<h4>Released: " + movieObj.Released + "</h4>");
+    a.append("<p>Metascore: " + movieObj.Metascore + "</p>");
+    a.append("<p>IMDB rating: " + movieObj.Score + "</p>");
+    a.append("<h4>" + movieObj.Rating + "</h4>");
+    a.append("<p>" + movieObj.Summary + "</p>");
 });
