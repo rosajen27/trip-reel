@@ -4,7 +4,7 @@ A mobile movie app that features dynamically updated HTML, CSS, and JavaScript w
 
 ## Deployment
 
-Deployed Website: https://rosajen27.github.io/trip-reel-project/
+Deployed Website: https://rosajen27.github.io/trip-reel/
 
 ![movie app demo](TripReelGIF.gif)
 
