@@ -1,6 +1,6 @@
 # Trip Reel Project
 
-A mobile movie app that features dynamically updated HTML, CSS, and JavaScript while integrating data received from multiple server-side API requests. This app was built from scratch collaboratively with a team of six coders, which allowed us to learn agile development methodologies and implement feature and bug fixes using the git branch workflow and pull requests.
+A mobile movie app that integrates data received from multiple server-side API requests. This app was built from scratch collaboratively with a team of six coders, which allowed us to learn agile development methodologies and implement feature and bug fixes using the git branch workflow and pull requests.
 
 ## Deployment
 
