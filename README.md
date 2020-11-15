@@ -6,7 +6,6 @@ A mobile movie app that integrates data received from multiple server-side API r
 
 Deployed Website: https://rosajen27.github.io/trip-reel/
 
-Original Repo: https://github.com/JakeSifo/Project_1
 
 ![movie app demo](TripReelGIF.gif)
 
