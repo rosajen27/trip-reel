@@ -1,4 +1,4 @@
-# Trip Reel Project
+# 📽 Trip Reel Project
 
 A mobile movie app that provides relevant movie information such as title, poster, runtime, plot, metascore, and where to watch. This app was built from scratch collaboratively with a team of six coders, which allowed us to learn agile development methodologies and implement feature and bug fixes using the git branch workflow and pull requests.
 
@@ -41,7 +41,7 @@ Deployed Website: https://rosajen27.github.io/trip-reel/
 
 This project is licensed under the MIT License.
 
-Copyright (c) 2020 Jennifer Rosa
+Copyright (c) 2021 Jennifer Rosa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
